@@ -81,10 +81,17 @@ const GoalSchema = new mongoose.Schema({
   category: { type: String, required: true, enum: ["work", "study", "startup", "personal"] },
   targetDate: { type: String, required: true },
   progress: { type: Number, default: 0 },
-  metrics: [{ type: String }],
+  metrics: [
+    {
+      name: { type: String, required: true },
+      target: { type: Number, required: true },
+      current: { type: Number, required: true },
+    }
+  ],
   createdAt: { type: String, default: () => new Date().toISOString() },
   updatedAt: { type: String, default: () => new Date().toISOString() },
 })
+
 
 const JournalEntrySchema = new mongoose.Schema({
   date: { type: String, required: true },
